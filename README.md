@@ -1,49 +1,90 @@
-# Route Algorithm
-This library created for finding optimal routes by drones using efficiency of power, flight route and package weights. This module cannot be used without permission!
+# Dynamic Energy and Cost-Efficient Multi-UAV Routing Problem Using Enhanced Genetic Algorithm
 
- ## Example Usage
+This repository contains the code and research paper for the project *Dynamic Energy and Cost-Efficient Multi-UAV Routing Problem Using Enhanced Genetic Algorithm.* This study focuses on optimizing UAV routes by dynamically adjusting speeds and energy use based on payloads, utilizing an Enhanced Genetic Algorithm (EGA) to achieve efficient UAV delivery operations in complex routes.
 
-```python
-from routeAlgorithm import routeAlgorithm
-import numpy as np
+## Table of Contents
 
-coordinates = {
-    0: (342, 598), 1: (200, 900), 2: (120, 300), 3: (250, 990),
-    4: (300, 700), 5: (350, 500), 6: (400, 400), 7: (900, 150),
-    8: (600, 600), 9: (900, 100), 10: (550, 850)
-}
+- [Introduction](#introduction)
+- [Project Structure](#project-structure)
+- [Installation](#installation)
+- [Usage](#usage)
+- [Methodology](#methodology)
+- [Results](#results)
+- [Citation](#citation)
+- [License](#license)
+- [Acknowledgments](#acknowledgments)
 
-package_weights = {
-    0: 0,  # Depot
-    1: 5, 2: 10, 3: 15, 4: 10, 5: 20, 6: 5, 7: 10, 8: 15, 9: 5, 10: 10
-}
+## Introduction
 
-payload_range = [5, 10, 15, 20]
-speed_range = np.linspace(5, 40, 8)
+This research addresses the need for energy-efficient UAV delivery operations by developing a capacitated multi-UAV routing model that optimizes both energy and cost. The study integrates an Enhanced Genetic Algorithm (EGA) with K-Means clustering for grouping delivery points and 2-Opt heuristic methods for route refinement. By dynamically adjusting UAV speeds based on payload weights, this model offers a scalable solution to minimize operational costs and energy consumption.
 
-routeAlgorithm(
-    num_points=11,
-    num_drones=4,
-    max_payload=40,
-    drone_base_weight=5,
-    A=2,
-    h=50,
-    coordinates=coordinates,
-    package_weights=package_weights,
-    payload_range=payload_range,
-    speed_range=speed_range,
-    battery_capacity=1000
-)
-```
+This work is published in *Journal of Optimization & Decision Making*.
 
-## How to create coordinates?
-Coordinates are managed by tuple lists. The first point must be the depot. Drone always returns to depot. 
-```python
-coordinates = {
-    0:(x, y), # Depot
-    1:(x_1,y_1), # Point
-    2:(x_2,y_2), # Point
-    3:(x_3,y_3), # Point
-    4:(x_4,y_4), # Point
-}
-```
+## Project Structure
+
+The repository includes the following files:
+
+Dynamic_Energy_Efficient_Multi_UAV/ ├── docs/ │ └── Dynamic Energy and Cost Efficient Multi-UAV Routing Problem.pdf # Research paper ├── src/ │ └── main.py # Python code for optimization model ├── README.md # Project documentation └── LICENSE # License information
+
+
+- **docs/**: Contains the published research paper.
+- **src/**: Contains the Python script for running the optimization model.
+- **README.md**: Provides an overview, installation instructions, and usage details.
+- **LICENSE**: Specifies the licensing information for the project.
+
+## Installation
+
+To set up and run the code, install [Python](https://www.python.org/downloads/) and required packages. Follow these steps:
+
+1. **Install Python**:
+   - Download and install Python from [https://www.python.org/downloads/](https://www.python.org/downloads/).
+
+2. **Install Required Python Packages**:
+   - Open a terminal and install the necessary packages:
+     ```bash
+     pip install numpy pandas gurobipy sklearn
+     ```
+   - **Note**: Gurobi requires a license. Obtain and set up a Gurobi license from [https://www.gurobi.com/](https://www.gurobi.com/).
+
+## Usage
+
+1. **Clone the Repository**:
+   - In a terminal, clone this repository and navigate to the `src` directory:
+     ```bash
+     git clone https://github.com/yourusername/Dynamic_Energy_Efficient_Multi_UAV.git
+     cd Dynamic_Energy_Efficient_Multi_UAV/src
+     ```
+
+2. **Run the Python Code**:
+   - Execute the script to run the multi-UAV routing optimization model:
+     ```bash
+     python main.py
+     ```
+   - The script will compute optimized routes for UAVs based on the defined parameters, focusing on energy efficiency.
+
+## Methodology
+
+The proposed model combines clustering, routing, and optimization techniques to improve UAV efficiency:
+1. **K-Means Clustering**: Groups delivery points for UAV assignment, reducing the overall travel distance.
+2. **Enhanced Genetic Algorithm (EGA)**: Explores potential routing solutions with adjustments in UAV speeds based on payload weight to optimize energy consumption.
+3. **2-Opt Heuristic**: Fine-tunes each UAV route by swapping points to reduce travel time and energy consumption.
+
+### Parameters
+- **Payload Weight**: Adjusted dynamically to optimize speed and energy use.
+- **UAV Speed and Energy Constraints**: Determines route efficiency and ensures UAVs do not exceed energy limits.
+
+## Results
+
+The model demonstrates substantial energy savings through speed adjustments relative to payload weight. For example, by beginning at a higher speed with heavier loads and gradually reducing speed as payloads are delivered, energy efficiency is improved by up to 30%.
+
+
+## License
+
+This project is licensed under the MIT License. See the [LICENSE](LICENSE) file for details.
+
+## Acknowledgments
+
+This research was conducted at Istanbul University by Alparslan Güzey and Mehmet Hakan Satman. Special thanks to all contributors who supported this project.
+
+
+
